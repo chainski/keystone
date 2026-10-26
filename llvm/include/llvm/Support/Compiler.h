@@ -92,7 +92,8 @@
 #define LLVM_LVALUE_FUNCTION
 #endif
 
-#if __has_feature(cxx_constexpr) || defined(__GXX_EXPERIMENTAL_CXX0X__)
+#if __has_feature(cxx_constexpr) || defined(__GXX_EXPERIMENTAL_CXX0X__) ||     \
+    defined(_MSC_VER)
 # define LLVM_CONSTEXPR constexpr
 #else
 # define LLVM_CONSTEXPR
@@ -310,7 +311,7 @@
 ///   int k;
 ///   long long l;
 /// };
-/// LLVM_PACKED_END 
+/// LLVM_PACKED_END
 #ifdef _MSC_VER
 # define LLVM_PACKED(d) __pragma(pack(push, 1)) d __pragma(pack(pop))
 # define LLVM_PACKED_START __pragma(pack(push, 1))
